@@ -20,7 +20,6 @@ import { FieldHelperText } from '../field-helper-text';
 import { FieldClearButton } from '../field-clear-button';
 import { ChevronDownIcon } from '../../icons/chevron-down';
 import { labelStyles } from '../../lib/label-size';
-import { dropdownStyles } from '../../lib/dropdown-list-style';
 import { SearchIcon } from '../../icons/search';
 import {
   type TheirPlacementType,
@@ -80,11 +79,22 @@ export type SelectOption = {
   [key: string]: any;
 };
 
-export type SelectProps<SelectOption> = ExtractProps<typeof Listbox> & {
+export type SelectProps<OptionType extends SelectOption = SelectOption> = Omit<
+  ExtractProps<typeof Listbox>,
+  'onChange' | 'value' | 'defaultValue'
+> & {
   /** Options for select */
-  options: SelectOption[];
+  options: OptionType[];
   /** The default value of the select (uncontrolled) */
-  defaultValue?: ExtractProps<typeof Listbox>['value'];
+  defaultValue?: OptionType['value'] | OptionType;
+  /** The controlled value of the select */
+  value?: OptionType['value'] | OptionType;
+  /** Callback fired when the value changes. The type of `value` depends on `getOptionValueKey` or `getOptionValue`:
+   * - If `getOptionValueKey` is provided, `value` will be `OptionType[getOptionValueKey]`
+   * - If `getOptionValue` is provided, `value` will be the return type of `getOptionValue`
+   * - Otherwise, `value` will be `OptionType['value'] | OptionType`
+   */
+  onChange?: (value: OptionType['value'] | OptionType) => void;
   /** Whether the select is disabled */
   disabled?: boolean;
   label?: ReactNode;
@@ -171,24 +181,24 @@ export type SelectProps<SelectOption> = ExtractProps<typeof Listbox> & {
    * @param value - The value of the selected item.
    * @returns React node to display for the selected item.
    */
-  displayValue?(value: ExtractProps<typeof Listbox>['value']): ReactNode;
+  displayValue?(value: any): ReactNode;
   /**
    * Use this function when you want to display something other than the default displayValue.
    * @param option - The SelectOption for which to get the display value.
    * @returns React node to display for the specified option.
    */
-  getOptionDisplayValue?(option: SelectOption): ReactNode;
+  getOptionDisplayValue?(option: OptionType): ReactNode;
   /**
    * Select whether the label or value should be returned in the onChange method (function approach, alternative to getOptionValueKey).
    * @param option - The SelectOption for which to get the value.
    * @returns The selected value from the specified option.
    */
   getOptionValue?: (
-    option: SelectOption
-  ) => SelectOption[keyof SelectOption] | SelectOption;
+    option: OptionType
+  ) => OptionType[keyof OptionType] | OptionType;
 };
 
-export function Select<OptionType extends SelectOption>({
+export function Select<OptionType extends SelectOption = SelectOption>({
   label,
   labelWeight = 'medium',
   error,
@@ -290,11 +300,7 @@ export function Select<OptionType extends SelectOption>({
 
   return (
     <div
-      className={cn(
-        'rizzui-select-root',
-        'grid w-full grid-cols-1',
-        className
-      )}
+      className={cn('rizzui-select-root', 'grid w-full grid-cols-1', className)}
     >
       <Listbox
         value={currentValue}
@@ -350,7 +356,7 @@ export function Select<OptionType extends SelectOption>({
                   emptyValue && 'text-muted-foreground'
                 )}
               >
-                {emptyValue ? placeholder : displayValue(currentValue)}
+                {emptyValue ? placeholder : displayValue(currentValue as any)}
               </span>
 
               {clearable && !emptyValue && (
