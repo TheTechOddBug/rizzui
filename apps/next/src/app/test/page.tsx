@@ -1,7 +1,7 @@
 'use client';
 
 import { Title } from '@/components/title';
-import { Button } from 'rizzui/button';
+// import { Button } from 'rizzui/button';
 import { Tab } from 'rizzui/tabs';
 import { Switch } from 'rizzui/switch';
 import { Card } from '@/components/card';
@@ -10,6 +10,52 @@ import { useState } from 'react';
 import { Drawer } from 'rizzui/drawer';
 import { Dropdown } from 'rizzui/dropdown';
 import { FileInput } from 'rizzui/file-input';
+
+import { createVariant, type VariantProps } from 'rizzui/variants';
+
+
+const button = createVariant({
+  base: 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+  variants: {
+    variant: {
+      primary: 'bg-primary text-primary-foreground hover:bg-primary-dark',
+      outline: 'border border-border bg-transparent hover:border-primary hover:text-primary',
+      ghost: 'bg-transparent hover:bg-muted',
+    },
+    size: {
+      sm: 'h-8 px-2 text-xs',
+      md: 'h-9 px-3 text-sm',
+      lg: 'h-10 px-4 text-base',
+    },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed pointer-events-none',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+  },
+});
+
+type ButtonVariants = VariantProps<typeof button>;
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonVariants & {
+  as?: React.ElementType;
+};
+
+export function Button({ variant, size, disabled, className, as, ...props }: ButtonProps) {
+  const Component = as || 'button';
+  return (
+    <Component
+      {...props}
+      disabled={disabled}
+      className={button({ variant, size, disabled, className })}
+    >
+      {props.children}
+    </Component>
+  );
+}
+
 
 
 export default function TestPage() {

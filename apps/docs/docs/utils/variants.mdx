@@ -48,7 +48,7 @@ This will provide full IntelliSense support for Tailwind classes when using `cre
 ## Simple Button Variants
 
 ```tsx
-import { createVariant } from 'rizzui/variants';
+import { createVariant, type VariantProps } from 'rizzui/variants';
 
 const button = createVariant({
   base: 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
@@ -73,7 +73,7 @@ const button = createVariant({
   },
 });
 
-type ButtonVariants = import('rizzui/variants').VariantProps<typeof button>;
+type ButtonVariants = VariantProps<typeof button>;
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonVariants;
 
@@ -101,7 +101,7 @@ export function Button({ variant, size, disabled, className, ...props }: ButtonP
 Use compound variants to add styles when **multiple** conditions are true.
 
 ```tsx
-import { createVariant } from 'rizzui/variants';
+import { createVariant, type VariantProps } from 'rizzui/variants';
 
 const alert = createVariant({
   base: 'relative flex w-full gap-2 rounded-md border px-3 py-2 text-sm',
@@ -141,7 +141,7 @@ const alert = createVariant({
 Slots let you define styles for multiple parts of a component in one place.
 
 ```tsx
-import { createVariant } from 'rizzui/variants';
+import { createVariant, type VariantProps } from 'rizzui/variants';
 
 const iconButton = createVariant({
   slots: {
@@ -177,7 +177,7 @@ const iconButton = createVariant({
   },
 });
 
-type IconButtonVariants = import('rizzui/variants').VariantProps<typeof iconButton>;
+type IconButtonVariants = VariantProps<typeof iconButton>;
 
 type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & IconButtonVariants & {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
