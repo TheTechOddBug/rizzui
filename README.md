@@ -51,17 +51,21 @@ Install RizzUI and its peer dependencies:
 
 ```bash
 # Using pnpm (recommended)
-pnpm add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss
+pnpm add rizzui @headlessui/react @floating-ui/react
 
 # Using npm
-npm install rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss
+npm install rizzui @headlessui/react @floating-ui/react
 
 # Using yarn
-yarn add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss
+yarn add rizzui @headlessui/react @floating-ui/react
 
 # Using bun
-bun add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss
+bun add rizzui @headlessui/react @floating-ui/react
 ```
+
+### Install Tailwind CSS
+
+Before configuring RizzUI, you need to install Tailwind CSS v4. Follow the [official Tailwind CSS installation guide](https://tailwindcss.com/docs/installation/using-vite) for your build tool.
 
 ### Configure Tailwind CSS v4
 
