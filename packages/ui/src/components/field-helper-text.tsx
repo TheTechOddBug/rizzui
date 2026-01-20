@@ -1,7 +1,7 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../lib/variants';
 
-const fieldHelperText = tv({
+const fieldHelperText = createVariant({
   variants: {
     size: {
       sm: 'text-[11px] mt-0.5',

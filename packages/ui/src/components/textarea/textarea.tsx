@@ -1,13 +1,13 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldHelperText } from '../field-helper-text';
 import { FieldErrorText } from '../field-error-text';
 import { FieldClearButton } from '../field-clear-button';
 import { labelStyles } from '../../lib/label-size';
 
-const textarea = tv({
-  base: 'block focus:outline-none bg-transparent transition duration-200 placeholder:opacity-60 focus-within:ring-[0.8px] focus-within:ring-primary hover:border-primary focus-within:border-primary [scrollbar-width:thin] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-[2px] [&::-webkit-scrollbar-thumb]:bg-muted [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground [&::-webkit-scrollbar-track]:rounded-[2px] [&::-webkit-scrollbar-track]:bg-transparent rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+const textarea = createVariant({
+  base: 'block focus:outline-none bg-transparent transition duration-200 placeholder:opacity-60 focus-within:ring-[0.8px] focus-within:ring-primary hover:border-primary focus-within:border-primary [scrollbar-width:thin] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-[2px] [&::-webkit-scrollbar-thumb]:bg-muted [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground [&::-webkit-scrollbar-track]:rounded-[2px] [&::-webkit-scrollbar-track]:bg-transparent rounded-(--border-radius) border-(length:--border-width)',
   variants: {
     variant: {
       text: 'border-transparent ring-transparent bg-transparent',
@@ -34,7 +34,7 @@ const textarea = tv({
   },
 });
 
-const clearButton = tv({
+const clearButton = createVariant({
   base: 'absolute',
   variants: {
     size: {

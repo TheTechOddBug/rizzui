@@ -7,11 +7,11 @@ import {
   type KeyboardEvent,
   type ClipboardEvent,
 } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 
-const pinCodeContainer = tv({
+const pinCodeContainer = createVariant({
   base: 'flex flex-row',
   variants: {
     center: {
@@ -24,8 +24,8 @@ const pinCodeContainer = tv({
   },
 });
 
-const pinCode = tv({
-  base: 'block peer text-center bg-transparent mr-2 focus:placeholder:opacity-0 focus:outline-none transition duration-200 rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+const pinCode = createVariant({
+  base: 'block peer text-center bg-transparent mr-2 focus:placeholder:opacity-0 focus:outline-none transition duration-200 rounded-(--border-radius) border-(length:--border-width)',
   variants: {
     variant: {
       flat: 'focus:ring-[1.8px] border-0 placeholder:opacity-90 bg-muted/70 backdrop-blur focus:ring-primary focus:enabled:bg-transparent',

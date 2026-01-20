@@ -8,7 +8,7 @@ import React, {
   useImperativeHandle,
   useMemo,
 } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 import { FieldHelperText } from '../field-helper-text';
@@ -94,11 +94,11 @@ function UploadZoneImagePreview({
   return <img src={objectUrl} alt={file.name} className={className} />;
 }
 
-const uploadZone = tv({
+const uploadZone = (createVariant as any)({
   slots: {
     root: 'flex flex-col',
     uploadZoneArea:
-      'relative flex flex-col items-center justify-center border-2 border-dashed rounded-[var(--border-radius)] transition-all duration-200 cursor-pointer',
+      'relative flex flex-col items-center justify-center border-2 border-dashed rounded-(--border-radius) transition-all duration-200 cursor-pointer',
     input: 'absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10',
     content:
       'flex flex-col items-center justify-center text-center pointer-events-none relative z-0',
@@ -410,10 +410,10 @@ export function UploadZone({
     previewRemoveButton,
   } = uploadZone({
     variant,
-    size,
-    isDragging,
-    disabled,
-    error: Boolean(error),
+    size: size as 'sm' | 'md' | 'lg',
+    isDragging: (isDragging ?? false) as any,
+    disabled: (disabled ?? false) as any,
+    error: Boolean(error) as any,
   });
 
   return (
@@ -423,7 +423,7 @@ export function UploadZone({
           className={cn(
             'rizzui-upload-zone-label',
             'block',
-            labelStyles.size[size],
+            labelStyles.size[size as 'sm' | 'md' | 'lg'],
             labelStyles.weight[labelWeight],
             disabled && 'text-muted-foreground',
             labelClassName
@@ -502,7 +502,7 @@ export function UploadZone({
 
       {!error && helperText ? (
         <FieldHelperText
-          size={size}
+          size={size as 'sm' | 'md' | 'lg'}
           className={cn(
             'rizzui-upload-zone-helper-text',
             disabled && 'text-muted-foreground',
@@ -571,7 +571,7 @@ export function UploadZone({
 
       {error ? (
         <FieldErrorText
-          size={size}
+          size={size as 'sm' | 'md' | 'lg'}
           error={error}
           className={cn('rizzui-upload-zone-error-text', errorClassName)}
         />

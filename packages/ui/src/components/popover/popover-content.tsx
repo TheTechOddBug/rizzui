@@ -1,11 +1,11 @@
 import type { ReactNode, Dispatch, SetStateAction } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { usePopover } from './popover-context';
 import { FloatingArrow, FloatingPortal } from '@floating-ui/react';
 import { cn } from '../../lib/cn';
 
-const popover = tv({
-  base: 'z-[9999] min-w-max bg-background dark:bg-muted/80 dark:backdrop-blur-3xl border-[length:var(--border-width)] border-border rounded-[var(--border-radius)] shadow-[0px_8px_24px_rgba(149,157,165,0.2)]',
+const popover = createVariant({
+  base: 'z-[9999] min-w-max bg-background dark:bg-muted/80 dark:backdrop-blur-3xl border-(length:--border-width) border-border rounded-(--border-radius) shadow-[0px_8px_24px_rgba(149,157,165,0.2)]',
   variants: {
     size: {
       sm: 'p-2.5',
@@ -18,7 +18,7 @@ const popover = tv({
   },
 });
 
-const popoverArrow = tv({
+const popoverArrow = createVariant({
   base: 'fill-background dark:fill-muted/80 [&>path]:stroke-muted',
 });
 

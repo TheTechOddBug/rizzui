@@ -12,7 +12,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from '@headlessui/react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import type { ExtractProps } from '../../lib/extract-props';
 import { FieldErrorText } from '../field-error-text';
@@ -37,8 +37,8 @@ import {
 } from './select-shared.lib';
 import { optionListStyles, searchStyles } from './select-shared.styles';
 
-const select = tv({
-  base: 'flex group items-center peer border-[length:var(--border-width)] hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-[var(--border-radius)]',
+const select = createVariant({
+  base: 'flex group items-center peer border-(length:--border-width) hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-(--border-radius)',
   variants: {
     variant: {
       text: 'border-transparent ring-transparent bg-transparent',

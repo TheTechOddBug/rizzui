@@ -1,7 +1,7 @@
 import type { ElementType, Ref, ReactNode, ComponentPropsWithRef } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../../lib/variants';
 
-const gridCol = tv({
+const gridCol = createVariant({
   variants: {
     colStart: {
       '1': 'col-start-1',

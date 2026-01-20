@@ -133,7 +133,7 @@ const config: Config = {
           dropdownItemsBefore: [
             {
               href: 'https://rizzui.com',
-              label: '🚀 Upgrade to v2.0.0',
+              label: '🚀 Upgrade to v2.1.0',
               className: 'upgrade-link',
             },
             // {

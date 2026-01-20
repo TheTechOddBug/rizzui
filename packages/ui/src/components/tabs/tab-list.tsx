@@ -3,24 +3,24 @@ import {
   TabList as HeadlessTabList,
   type TabListProps as HeadlessTabListProps,
 } from '@headlessui/react';
-import { tv } from 'tailwind-variants';
+import { createVariant } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import type { ExtractProps } from '../../lib/extract-props';
 import { Highlight } from '../highlight';
 import { useTab } from './tab-context';
 import { useRePositioningActiveTab } from './tab-lib';
 
-const tabList = tv({
+const tabList = createVariant({
   base: 'relative flex border-border',
   variants: {
-    vertical: {
-      true: 'flex-col border-e pe-3',
-      false:
+    orientation: {
+      vertical: 'flex-col border-e pe-3',
+      horizontal:
         'justify-start border-b gap-4 pb-[1px] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden',
     },
   },
   defaultVariants: {
-    vertical: false,
+    orientation: 'horizontal',
   },
 });
 
@@ -48,7 +48,7 @@ export function TabList({ children, className, ...props }: TabListProps) {
       onMouseLeave={() => setDisplayHighlight && setDisplayHighlight(false)}
       className={cn(
         'rizzui-tab-list',
-        tabList({ vertical }),
+        tabList({ orientation: vertical ? 'vertical' : 'horizontal' }),
         className
       )}
       {...props}
@@ -61,7 +61,7 @@ export function TabList({ children, className, ...props }: TabListProps) {
           visible={displayHighlight}
           hoverHeightRatio={0.7}
           hoverWidthRatio={1}
-          className={highlightClassName}
+          className={cn('z-0', highlightClassName)}
         />
       )}
     </HeadlessTabList>

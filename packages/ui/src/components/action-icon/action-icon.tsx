@@ -1,9 +1,9 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { SpinnerIcon } from '../../icons/spinner';
 
-const actionIcon = tv({
-  base: 'inline-flex items-center cursor-pointer justify-center active:enabled:translate-y-px focus:outline-none focus-visible:ring-[1.8px] focus-visible:ring-offset-2 ring-offset-background transition-colors duration-200 rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+const actionIcon = createVariant({
+  base: 'inline-flex items-center cursor-pointer justify-center active:enabled:translate-y-px focus:outline-none focus-visible:ring-[1.8px] focus-visible:ring-offset-2 ring-offset-background transition-colors duration-200 rounded-(--border-radius) border-(length:--border-width)',
   variants: {
     variant: {
       solid:
@@ -33,7 +33,7 @@ const actionIcon = tv({
   },
 });
 
-const spinnerStyles = tv({
+const spinnerStyles = createVariant({
   base: 'animate-spin',
   variants: {
     size: {

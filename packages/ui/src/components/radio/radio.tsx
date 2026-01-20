@@ -1,13 +1,13 @@
 import type { InputHTMLAttributes, ReactNode, Ref } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 import { FieldHelperText } from '../field-helper-text';
 import { labelStyles } from '../../lib/label-size';
 import { useRadioGroup } from '../radio-group/radio-group';
 
-const radio = tv({
-  base: 'disabled:bg-muted/70 disabled:backdrop-blur disabled:border-muted focus:ring-border focus:ring-offset-background text-primary dark:text-primary-foreground border-[length:var(--border-width)]',
+const radio = createVariant({
+  base: 'disabled:bg-muted/70 disabled:backdrop-blur disabled:border-muted focus:ring-border focus:ring-offset-background text-primary dark:text-primary-foreground border-(length:--border-width)',
   variants: {
     variant: {
       outline:
@@ -25,7 +25,7 @@ const radio = tv({
   },
 });
 
-const radioLabel = tv({
+const radioLabel = createVariant({
   base: 'mb-0',
   variants: {
     size: {

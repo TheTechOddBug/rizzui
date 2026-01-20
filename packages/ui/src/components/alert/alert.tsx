@@ -1,13 +1,14 @@
 import type { ReactNode, MouseEvent } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { XIcon } from '../../icons/x-mark';
 import { AlertIcon } from './icons';
 import { cn } from '../../lib/cn';
 
-const alert = tv({
+// @ts-ignore - TypeScript overload resolution with slots
+const alert = createVariant({
   slots: {
-    root: 'relative block w-full break-all dark:backdrop-blur rounded-[var(--border-radius)] border-[length:var(--border-width)] bg-transparent',
-    bar: 'absolute left-0 top-0 h-full w-1 rtl:right-0 rtl:left-auto rounded-s-[var(--border-radius)]',
+    root: 'relative block w-full break-all dark:backdrop-blur rounded-(--border-radius) border-(length:--border-width) bg-transparent',
+    bar: 'absolute left-0 top-0 h-full w-1 rtl:right-0 rtl:left-auto rounded-s-(--border-radius)',
     iconWrapper:
       'absolute top-0 h-full flex items-center justify-center text-muted-foreground',
     content: '',
@@ -94,8 +95,8 @@ export function Alert({
 }: AlertProps) {
   const { root, bar, iconWrapper, content, closeWrapper } = alert({
     color,
-    size,
-    closable,
+    size: size as 'sm' | 'md' | 'lg',
+    closable: (closable ?? false) as any,
   });
 
   return (
@@ -112,7 +113,7 @@ export function Alert({
           iconClassName
         )}
       >
-        {icon || <AlertIcon size={size} color={color} />}
+        {icon || <AlertIcon size={size as 'sm' | 'md' | 'lg'} color={color} />}
       </div>
 
       <div className={content()}>{children}</div>

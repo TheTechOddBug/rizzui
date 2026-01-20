@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { useResizeHandler } from './drawer.lib';
 
-const drawer = tv({
+// @ts-ignore - TypeScript overload resolution with slots
+const drawer = createVariant({
   slots: {
     root: 'fixed inset-0 z-[999] overflow-hidden',
     overlay:
@@ -103,17 +104,16 @@ export function Drawer({
   className,
   children,
 }: DrawerProps) {
-  const { handleMouseDown, containerRef, width } = useResizeHandler({
-    placement,
+  const { handleMouseDown, containerRef } = useResizeHandler({
+    placement: placement as 'left' | 'right' | 'top' | 'bottom',
   });
-
-  const newWidth = width !== 0 ? width : customSize;
+  
   const {
     root,
     overlay: overlayClass,
     panel,
     resizer,
-  } = drawer({ placement, size });
+  } = drawer({ placement: placement as 'left' | 'right' | 'top' | 'bottom', size: size as 'sm' | 'md' | 'lg' | 'full' });
 
   return (
     <Dialog
@@ -141,8 +141,8 @@ export function Drawer({
         })}
         {...(customSize && {
           style: {
-            height: isPlacementOnYAxis(placement) ? newWidth : 'inherit',
-            width: !isPlacementOnYAxis(placement) ? newWidth : '100%',
+            height: isPlacementOnYAxis(placement) ? customSize : 'inherit',
+            width: !isPlacementOnYAxis(placement) ? customSize : '100%',
           },
         })}
       >

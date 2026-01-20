@@ -1,8 +1,8 @@
 import type { ElementType, Ref, ReactNode, ComponentPropsWithRef } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../../lib/variants';
 import { GridCol } from './grid-col';
 
-const gridVariants = tv({
+const gridVariants = createVariant({
   base: 'grid',
   variants: {
     columns: {

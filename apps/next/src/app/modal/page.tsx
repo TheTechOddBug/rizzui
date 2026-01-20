@@ -43,7 +43,7 @@ export default function ModalPage() {
         <section className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-6">Sizes</h2>
           <div className="flex gap-3 flex-wrap">
-            {['sm', 'md', 'lg', 'xl', 'full'].map((size) => (
+            {['sm', 'md', 'lg', 'full'].map((size) => (
               <Button key={size} variant="outline" onClick={() => setSizeModal({ isOpen: true, size })}>
                 {size.toUpperCase()}
               </Button>

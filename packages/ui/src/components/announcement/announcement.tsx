@@ -1,9 +1,9 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { Badge } from '../badge';
 
-const announcement = tv({
+const announcement = createVariant({
   base: 'flex items-center w-fit rounded-full',
   variants: {
     size: {
@@ -22,7 +22,7 @@ const announcement = tv({
   },
 });
 
-const announcementHighlight = tv({
+const announcementHighlight = createVariant({
   base: 'rizzui-announcement-highlighted-text ms-2.5 font-medium',
   variants: {
     color: {

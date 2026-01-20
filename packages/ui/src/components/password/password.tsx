@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { PasswordToggleIcon } from './password-toggle-icon';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
@@ -7,8 +7,8 @@ import { FieldHelperText } from '../field-helper-text';
 import { FieldClearButton } from '../field-clear-button';
 import { labelStyles } from '../../lib/label-size';
 
-const inputContainer = tv({
-  base: 'flex items-center peer w-full transition duration-200 border-[length:var(--border-width)] focus-within:ring-[0.8px] hover:border-primary focus-within:border-primary focus-within:ring-primary [&_input::placeholder]:opacity-60 rounded-[var(--border-radius)]',
+const inputContainer = createVariant({
+  base: 'flex items-center peer w-full transition duration-200 border-(length:--border-width) focus-within:ring-[0.8px] hover:border-primary focus-within:border-primary focus-within:ring-primary [&_input::placeholder]:opacity-60 rounded-(--border-radius)',
   variants: {
     variant: {
       text: 'border-transparent ring-transparent bg-transparent',
@@ -32,7 +32,7 @@ const inputContainer = tv({
   },
 });
 
-const inputField = tv({
+const inputField = createVariant({
   base: 'w-full border-0 bg-transparent [font-size:inherit] p-0 focus:outline-none focus:ring-0 [&::-ms-clear]:hidden [&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none',
   variants: {
     disabled: {

@@ -47,9 +47,9 @@ export function Tab({
         as="div"
         selectedIndex={selectedIndex ?? activeTab}
         onChange={onChange ?? setActiveTab}
-        className={cn('rizzui-tab-root', 'w-full', className, {
+        className={cn('rizzui-tab-root', 'w-full', {
           'flex gap-4': vertical,
-        })}
+        }, className)}
         {...props}
       >
         {children}

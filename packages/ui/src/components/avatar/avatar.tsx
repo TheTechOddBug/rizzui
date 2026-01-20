@@ -1,8 +1,8 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 
-const avatar = tv({
+const avatar = createVariant({
   base: 'inline-flex items-center justify-center flex-shrink-0 rounded-full',
   variants: {
     size: {

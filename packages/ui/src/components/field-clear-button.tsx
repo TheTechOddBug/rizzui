@@ -1,7 +1,7 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../lib/variants';
 
-const fieldClearButton = tv({
+const fieldClearButton = createVariant({
   base: 'rizzui-input-clear-btn input-clear-btn inline-flex shrink-0 transform items-center justify-center rounded-full bg-muted/70 backdrop-blur text-foreground/90 transition-all duration-200 ease-in-out hover:bg-primary hover:text-primary-foreground',
   variants: {
     size: {

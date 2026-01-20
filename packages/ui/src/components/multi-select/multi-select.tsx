@@ -13,7 +13,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { XIcon } from '../../icons/x-mark';
 import { SearchIcon } from '../../icons/search';
@@ -32,8 +32,8 @@ import { FieldClearButton } from '../field-clear-button';
 import { CheckmarkIcon } from '../../icons/checkmark';
 import { optionListStyles, searchStyles } from '../select/select-shared.styles';
 
-const multiSelect = tv({
-  base: 'flex group items-center peer border-[length:var(--border-width)] hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-[var(--border-radius)]',
+const multiSelect = createVariant({
+  base: 'flex group items-center peer border-(length:--border-width) hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-(--border-radius)',
   variants: {
     variant: {
       text: 'border-transparent ring-transparent bg-transparent',

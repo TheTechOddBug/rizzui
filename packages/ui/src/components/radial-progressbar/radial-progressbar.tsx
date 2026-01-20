@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 
-const radialProgress = tv({
+const radialProgress = createVariant({
   base: 'transform transition-all duration-200',
   variants: {
     startAngle: {

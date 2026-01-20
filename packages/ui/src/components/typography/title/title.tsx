@@ -1,5 +1,5 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../../lib/variants';
 import { fontWeightStyles } from '../../../lib/font-weight';
 
 const fontWeight = {
@@ -7,7 +7,7 @@ const fontWeight = {
   extraBold: 'font-extrabold',
 } as const;
 
-const title = tv({
+const title = createVariant({
   base: 'rizzui-title text-text-primary',
   variants: {
     as: {

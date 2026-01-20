@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start",
@@ -50,7 +50,7 @@
     "react-number-format": "5.4.4",
     "react-phone-input-2": "2.15.1",
     "rizzui": "workspace:*",
-    "tailwind-variants": "3.1.1",
+    "tailwind-variants": "3.2.2",
     "tailwindcss": "4.1.11",
     "turndown": "7.2.2",
     "uuid": "11.1.0",

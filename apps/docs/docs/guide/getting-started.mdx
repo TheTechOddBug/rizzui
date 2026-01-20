@@ -56,7 +56,7 @@ Navigate to your React/Next.js project and run:
     default
   >
     <CodeBlock language="js">
-      {`npm i rizzui @headlessui/react @floating-ui/react tailwind-variants tailwind-merge`}
+      {`npm i rizzui @headlessui/react @floating-ui/react`}
     </CodeBlock>
   </TabItem>
   <TabItem
@@ -68,7 +68,7 @@ Navigate to your React/Next.js project and run:
     }
   >
     <CodeBlock language="js">
-      {`yarn add rizzui @headlessui/react @floating-ui/react tailwind-variants tailwind-merge`}
+      {`yarn add rizzui @headlessui/react @floating-ui/react`}
     </CodeBlock>
   </TabItem>
   <TabItem
@@ -80,7 +80,7 @@ Navigate to your React/Next.js project and run:
     }
   >
     <CodeBlock language="js">
-      {`pnpm add rizzui @headlessui/react @floating-ui/react tailwind-variants tailwind-merge`}
+      {`pnpm add rizzui @headlessui/react @floating-ui/react`}
     </CodeBlock>
   </TabItem>
   <TabItem
@@ -92,7 +92,7 @@ Navigate to your React/Next.js project and run:
     }
   >
     <CodeBlock language="js">
-      {`bun add rizzui @headlessui/react @floating-ui/react tailwind-variants tailwind-merge`}
+      {`bun add rizzui @headlessui/react @floating-ui/react`}
     </CodeBlock>
   </TabItem>
 </Tabs>
@@ -101,9 +101,7 @@ Navigate to your React/Next.js project and run:
   **Package Overview** - **`rizzui`** - The core UI component library -
   **`@headlessui/react`** - Provides accessible, unstyled primitives for complex
   components (dropdowns, modals, tabs) - **`@floating-ui/react`** - Advanced
-  positioning system for tooltips, popovers, and dropdowns -
-  **`tailwind-variants`** - Type-safe variant management system for component
-  styling - **`tailwind-merge`** - A utility for merging Tailwind CSS classes
+  positioning system for tooltips, popovers, and dropdowns
 </div>
 
 <div className="flex items-center gap-2 mb-4">
@@ -398,6 +396,49 @@ const CustomButton = ({ className, variant = 'primary', ...props }) => (
     )}
   />
 );
+```
+
+#### Variant Utility (`createVariant`)
+
+The `createVariant` utility provides a type-safe way to create component variants with Tailwind CSS classes. It's the same utility used internally by RizzUI components.
+
+**Key Features:**
+
+- Type-safe variant definitions with full TypeScript inference
+- Supports boolean, string, and number variants
+- Compound variants for conditional styling
+- Slots support for multi-part components
+- Zero runtime dependencies (except `cn`)
+
+**Example:**
+
+```tsx
+import { createVariant } from 'rizzui/variants';
+
+const button = createVariant({
+  base: 'px-4 py-2 rounded font-medium',
+  variants: {
+    variant: {
+      primary: 'bg-blue-500 text-white',
+      secondary: 'bg-gray-500 text-white',
+    },
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+  },
+});
+
+// Usage
+const classes = button({ variant: 'primary', size: 'lg' });
 ```
 
 ## Next Steps

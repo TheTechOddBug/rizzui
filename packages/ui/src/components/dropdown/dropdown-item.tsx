@@ -1,9 +1,9 @@
 import type { Ref, ButtonHTMLAttributes, HTMLAttributes } from 'react';
-import { tv } from 'tailwind-variants';
+import { createVariant } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { MenuItem } from '@headlessui/react';
 
-const dropdownItem = tv({
+const dropdownItem = createVariant({
   base: 'flex w-full items-center px-3 py-1.5 rounded-[calc(var(--border-radius)/2)] cursor-pointer',
 });
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { BarsSpinner } from './bars-spinner';
 import { PulseLoader } from './pulse-loader';
 import { Spinner } from './spinner';
 import { ThreeDotScale } from './three-dot-scale';
 
-const loader = tv({
+const loader = createVariant({
   base: 'rizzui-loader h-auto',
   variants: {
     size: {

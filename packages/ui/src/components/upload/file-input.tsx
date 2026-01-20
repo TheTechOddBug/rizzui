@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 import { FieldHelperText } from '../field-helper-text';
 import { FieldClearButton } from '../field-clear-button';
 import { labelStyles } from '../../lib/label-size';
 
-const fileInput = tv({
+const fileInput = (createVariant as any)({
   slots: {
-    container: 'flex items-center peer w-full transition duration-200 rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+    container: 'flex items-center peer w-full transition duration-200 rounded-(--border-radius) border-(length:--border-width)',
     input: 'w-full border-0 bg-transparent p-0 focus:outline-none focus:ring-0',
     button:
       '[&::file-selector-button]:inline-flex [&::file-selector-button]:font-medium [&::file-selector-button]:leading-none [&::file-selector-button]:items-center [&::file-selector-button]:justify-center [&::file-selector-button]:border-0 [&::file-selector-button]:focus-visible:ring-2 [&::file-selector-button]:focus-visible:ring-opacity-50 [&::file-selector-button]:bg-primary [&::file-selector-button]:hover:enabled:bg-primary-dark [&::file-selector-button]:focus-visible:ring-primary/30 [&::file-selector-button]:text-primary-foreground [&::file-selector-button]:rounded-[calc(var(--border-radius)-2px)]',
@@ -115,7 +115,7 @@ export function FileInput({
       container,
       input: inputStyle,
       button,
-    } = fileInput({ variant, size, disabled, error: Boolean(error), clearable });
+    } = fileInput({ variant, size: size as 'sm' | 'md' | 'lg', disabled: (disabled ?? false) as any, error: Boolean(error) as any, clearable: (clearable ?? false) as any });
 
     return (
       <div
@@ -131,7 +131,7 @@ export function FileInput({
               className={cn(
                 'rizzui-file-input-label',
                 'block',
-                labelStyles.size[size],
+                labelStyles.size[size as 'sm' | 'md' | 'lg'],
                 labelStyles.weight[labelWeight],
                 disabled && 'text-muted-foreground',
                 labelClassName
@@ -156,14 +156,14 @@ export function FileInput({
             />
 
             {clearable && (
-              <FieldClearButton size={size} onClick={handleOnClear} />
+              <FieldClearButton size={size as 'sm' | 'md' | 'lg'} onClick={handleOnClear} />
             )}
           </span>
         </label>
 
         {!error && helperText ? (
           <FieldHelperText
-            size={size}
+            size={size as 'sm' | 'md' | 'lg'}
             className={cn(
               'rizzui-file-input-helper-text',
               disabled && 'text-muted-foreground',
@@ -176,7 +176,7 @@ export function FileInput({
 
         {error ? (
           <FieldErrorText
-            size={size}
+            size={size as 'sm' | 'md' | 'lg'}
             error={error}
             className={cn(
               'rizzui-file-input-error-text',

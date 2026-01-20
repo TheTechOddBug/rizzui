@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode, Ref } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { CheckmarkIcon } from '../../icons/checkmark';
 import { FieldErrorText } from '../field-error-text';
@@ -7,8 +7,8 @@ import { FieldHelperText } from '../field-helper-text';
 import { labelStyles } from '../../lib/label-size';
 import { useCheckboxGroup } from '../checkbox-group/checkbox-group';
 
-const checkbox = tv({
-  base: 'peer outline-none focus:outline-none checked:bg-none focus:ring-offset-background transition duration-200 ease-in-out rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+const checkbox = createVariant({
+  base: 'peer outline-none focus:outline-none checked:bg-none focus:ring-offset-background transition duration-200 ease-in-out rounded-(--border-radius) border-(length:--border-width)',
   variants: {
     variant: {
       outline:
@@ -30,7 +30,7 @@ const checkbox = tv({
   },
 });
 
-const checkboxLabel = tv({
+const checkboxLabel = createVariant({
   base: 'mb-0',
   variants: {
     size: {
@@ -58,7 +58,7 @@ const checkboxLabel = tv({
   ],
 });
 
-const indeterminateIcon = tv({
+const indeterminateIcon = createVariant({
   base: 'rounded bg-primary-foreground',
   variants: {
     size: {
@@ -159,7 +159,7 @@ export function Checkbox({
           {indeterminate && (
             <span
               className={cn(
-                'absolute inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-[var(--border-radius)] bg-black peer-checked:hidden'
+                'absolute inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-(--border-radius) bg-black peer-checked:hidden'
               )}
             >
               <span className={indeterminateIcon({ size })} />
