@@ -5,7 +5,7 @@ import { FloatingArrow, FloatingPortal } from '@floating-ui/react';
 import { cn } from '../../lib/cn';
 
 const popover = createVariant({
-  base: 'z-[9999] min-w-max bg-background dark:bg-muted/80 dark:backdrop-blur-3xl border-(length:--border-width) border-border rounded-(--border-radius) shadow-[0px_8px_24px_rgba(149,157,165,0.2)]',
+  base: 'z-9999 min-w-max bg-background border-(length:--border-width) border-border rounded-(--border-radius) shadow-[0px_8px_24px_rgba(149,157,165,0.2)] dark:shadow-[0px_8px_24px_rgba(0,0,0,0.2)]',
   variants: {
     size: {
       sm: 'p-2.5',

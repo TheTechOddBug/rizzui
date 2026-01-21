@@ -8,7 +8,7 @@ const drawer = createVariant({
   slots: {
     root: 'fixed inset-0 z-999 overflow-hidden',
     overlay:
-      'fixed inset-0 cursor-pointer bg-black/60 duration-300 ease-in-out data-closed:opacity-0',
+      'fixed inset-0 cursor-pointer bg-black/60 dark:bg-white/5 duration-300 ease-in-out data-closed:opacity-0',
     panel: 'fixed w-full h-full bg-background duration-300 ease-out',
     resizer: 'absolute rounded-md bg-gray-400',
   },

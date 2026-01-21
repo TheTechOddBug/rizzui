@@ -94,7 +94,7 @@ function UploadZoneImagePreview({
   return <img src={objectUrl} alt={file.name} className={className} />;
 }
 
-const uploadZone = (createVariant as any)({
+const uploadZone = createVariant({
   slots: {
     root: 'flex flex-col',
     uploadZoneArea:

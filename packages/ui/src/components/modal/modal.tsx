@@ -3,14 +3,14 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 
-const modal = (createVariant as any)({
+const modal = createVariant({
   slots: {
-    root: 'fixed inset-0 z-[999] overflow-y-auto overflow-x-hidden',
+    root: 'fixed inset-0 z-999 overflow-y-auto overflow-x-hidden',
     area: 'flex min-h-screen flex-col items-center justify-center',
     overlay:
-      'fixed inset-0 cursor-pointer bg-black/60 z-10 duration-300 ease-in-out data-[closed]:opacity-0',
+      'fixed inset-0 cursor-pointer bg-black/60 dark:bg-white/5 z-10 duration-300 ease-in-out data-closed:opacity-0',
     panel:
-      'm-auto w-full break-words bg-background shadow-xl z-20 duration-300 ease-in-out data-[closed]:scale-95 data-[closed]:opacity-0 rounded-(--border-radius)',
+      'm-auto w-full wrap-break-word bg-background shadow-xl z-20 duration-300 ease-in-out data-closed:scale-95 data-closed:opacity-0 rounded-(--border-radius)',
   },
   variants: {
     size: {
