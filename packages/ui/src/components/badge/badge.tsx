@@ -1,8 +1,8 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 
-const badge = tv({
-  base: 'inline-flex items-center justify-center font-semibold leading-none rounded-full border-[length:var(--border-width)]',
+const badge = createVariant({
+  base: 'inline-flex items-center justify-center font-semibold leading-none rounded-full border-(length:--border-width)',
   variants: {
     variant: {
       solid: '',

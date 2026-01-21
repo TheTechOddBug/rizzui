@@ -1,7 +1,7 @@
 import React, { type ElementType } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../../lib/variants';
 
-const flex = tv({
+const flex = createVariant({
   base: 'flex w-full',
   variants: {
     direction: {

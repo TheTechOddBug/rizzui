@@ -1,7 +1,7 @@
 import React from 'react';
-import { tv } from 'tailwind-variants';
+import { createVariant } from '../../../lib/variants';
 
-const blockquote = tv({
+const blockquote = createVariant({
   base: 'border-l-4 border-border text-quote py-3 px-4 text-text-primary',
 });
 

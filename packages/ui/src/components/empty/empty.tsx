@@ -1,9 +1,9 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { DefaultIcon } from './empty-icons';
 
-const empty = tv({
+const empty = createVariant({
   base: 'flex flex-col',
   variants: {
     alignment: {

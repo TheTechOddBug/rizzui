@@ -16,11 +16,11 @@ import {
   useTransitionStyles,
   FloatingPortal,
 } from '@floating-ui/react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 
-const tooltip = tv({
-  base: 'text-center z-[9999] min-w-max rounded-[var(--border-radius)] border-[length:var(--border-width)] drop-shadow-[0px_8px_24px_rgba(149,157,165,0.2)]',
+const tooltip = createVariant({
+  base: 'text-center z-9999 min-w-max rounded-(--border-radius) border-(length:--border-width) drop-shadow-[0px_8px_24px_rgba(149,157,165,0.2)] dark:drop-shadow-[0px_8px_24px_rgba(0,0,0,0.2)]',
   variants: {
     size: {
       sm: 'px-2.5 py-1 text-xs',
@@ -62,7 +62,7 @@ const tooltip = tv({
   },
 });
 
-const tooltipArrow = tv({
+const tooltipArrow = createVariant({
   variants: {
     color: {
       primary: 'fill-primary',

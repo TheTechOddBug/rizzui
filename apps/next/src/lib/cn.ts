@@ -1,19 +1,18 @@
-import { cnBase } from 'tailwind-variants';
+import { clsx, type ClassValue } from 'clsx';
 
 /**
- * Utility function for conditionally joining class names together with proper
- * Tailwind CSS class merging using tailwind-variants v3
+ * Utility function for conditionally joining class names together.
  *
- * Uses cnBase from tailwind-variants which provides:
- * - Class name concatenation
- * - Automatic Tailwind CSS conflict resolution via tailwind-merge
- * - Support for strings, arrays, objects, and conditional classes
+ * This implementation uses `clsx` to:
+ * - Concatenate class names
+ * - Support strings, arrays, objects, and conditional classes
  *
  * @example
- * cn('px-2 py-1', 'px-4') // => 'py-1 px-4' (conflict resolved)
+ * cn('px-2 py-1', 'px-4') // => 'px-2 py-1 px-4'
  * cn('text-sm', { 'font-bold': true }) // => 'text-sm font-bold'
  * cn(['flex', 'items-center']) // => 'flex items-center'
  */
-export function cn(...inputs: Parameters<typeof cnBase>): string {
-  return cnBase(...inputs) || '';
+export function cn(...inputs: ClassValue[]): string {
+  return clsx(...inputs);
 }
+

@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import type { VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { table } from '../../lib/table-style';
 

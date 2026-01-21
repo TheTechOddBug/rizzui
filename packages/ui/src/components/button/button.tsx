@@ -1,19 +1,19 @@
 import React, { type ElementType } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { Loader } from '../loader';
 
-const button = tv({
-  base: 'font-medium inline-flex items-center justify-center cursor-pointer active:enabled:translate-y-px focus:outline-none focus-visible:ring-[1.8px] focus-visible:ring-offset-2 ring-offset-background transition-colors duration-200 rounded-[var(--border-radius)]',
+const button = createVariant({
+  base: 'font-medium inline-flex items-center justify-center cursor-pointer active:enabled:translate-y-px focus:outline-none focus-visible:ring-[1.8px] focus-visible:ring-offset-2 ring-offset-background transition-colors duration-200 rounded-(--border-radius)',
   variants: {
     variant: {
       solid:
-        'bg-primary hover:bg-primary-dark dark:hover:bg-primary/90 focus-visible:ring-border text-primary-foreground border-[length:var(--border-width)] border-transparent dark:backdrop-blur',
+        'bg-primary hover:bg-primary-dark dark:hover:bg-primary/90 focus-visible:ring-border text-primary-foreground border-(length:--border-width) border-transparent dark:backdrop-blur',
       outline:
-        'bg-transparent border-[length:var(--border-width)] border-border hover:border-primary focus-visible:ring-border hover:text-primary dark:backdrop-blur',
-      flat: 'bg-muted hover:bg-primary-lighter focus-visible:ring-primary-lighter hover:text-primary-dark border-[length:var(--border-width)] border-transparent backdrop-blur',
-      text: 'hover:text-primary focus-visible:ring-primary-lighter border-[length:var(--border-width)] border-transparent',
+        'bg-transparent border-(length:--border-width) border-border hover:border-primary focus-visible:ring-border hover:text-primary dark:backdrop-blur',
+      flat: 'bg-muted hover:bg-primary-lighter focus-visible:ring-primary-lighter hover:text-primary-dark border-(length:--border-width) border-transparent backdrop-blur',
+      text: 'hover:text-primary focus-visible:ring-primary-lighter border-(length:--border-width) border-transparent',
       danger:
-        'bg-red hover:bg-red-dark dark:hover:bg-red/80 focus-visible:ring-red/30 text-white border-[length:var(--border-width)] border-transparent dark:backdrop-blur',
+        'bg-red hover:bg-red-dark dark:hover:bg-red/80 focus-visible:ring-red/30 text-white border-(length:--border-width) border-transparent dark:backdrop-blur',
     },
     size: {
       sm: 'px-2.5 py-1 text-xs h-8',
@@ -39,6 +39,7 @@ export type ButtonProps<T extends ElementType = 'button'> = VariantProps<
   as?: T;
   ref?: React.Ref<any>;
   isLoading?: boolean;
+  defaultLoaderVariant?: 'bars' | 'pulse' | 'spinner' | 'threeDot';
   loader?: React.ReactNode;
   children?: React.ReactNode;
 } & Omit<React.ComponentPropsWithRef<T>, 'as' | 'className' | 'ref'> & {
@@ -56,6 +57,7 @@ export function Button<T extends ElementType = 'button'>({
   size,
   disabled,
   loader,
+  defaultLoaderVariant = 'bars',
   ...props
 }: ButtonProps<T>) {
   const Component = (as || 'button') as ElementType;
@@ -80,7 +82,7 @@ export function Button<T extends ElementType = 'button'>({
         <>
           <span className="invisible opacity-0">{children}</span>
           <span className="absolute inset-0 flex h-full w-full items-center justify-center">
-            {loader ?? <Loader size={size} className="scale-95" />}
+            {loader ?? <Loader size={size} variant={defaultLoaderVariant} className="scale-95" />}
           </span>
         </>
       ) : (

@@ -1,6 +1,6 @@
-import { tv } from 'tailwind-variants';
+import { createVariant } from './variants';
 
-export const table = tv({
+export const table = createVariant({
   base: 'min-w-full border-collapse',
   variants: {
     variant: {

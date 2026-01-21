@@ -103,7 +103,7 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'v-2.0.0',
+          label: 'v-2.1.0',
           position: 'right',
           items: [
             {

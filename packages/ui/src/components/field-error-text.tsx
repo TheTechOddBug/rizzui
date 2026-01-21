@@ -1,7 +1,7 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../lib/variants';
 
-const fieldError = tv({
+const fieldError = createVariant({
   base: 'text-red',
   variants: {
     size: {

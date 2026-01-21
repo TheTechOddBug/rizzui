@@ -1,17 +1,17 @@
 import React, { useCallback } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 import { FieldHelperText } from '../field-helper-text';
 import { FieldClearButton } from '../field-clear-button';
 import { labelStyles } from '../../lib/label-size';
 
-const fileInput = tv({
+const fileInput = createVariant({
   slots: {
-    container: 'flex items-center peer w-full transition duration-200 rounded-[var(--border-radius)] border-[length:var(--border-width)]',
+    container: 'flex items-center peer w-full transition duration-200 rounded-(--border-radius) border-(length:--border-width)',
     input: 'w-full border-0 bg-transparent p-0 focus:outline-none focus:ring-0',
     button:
-      '[&::file-selector-button]:inline-flex [&::file-selector-button]:font-medium [&::file-selector-button]:leading-none [&::file-selector-button]:items-center [&::file-selector-button]:justify-center [&::file-selector-button]:border-0 [&::file-selector-button]:focus-visible:ring-2 [&::file-selector-button]:focus-visible:ring-opacity-50 [&::file-selector-button]:bg-primary [&::file-selector-button]:hover:enabled:bg-primary-dark [&::file-selector-button]:focus-visible:ring-primary/30 [&::file-selector-button]:text-primary-foreground [&::file-selector-button]:rounded-[calc(var(--border-radius)-2px)]',
+      'file:inline-flex file:font-medium file:leading-none file:items-center file:justify-center file:border-0 file:focus-visible:ring-2 file:focus-visible:ring-opacity-50 file:bg-primary file:hover:enabled:bg-primary-dark file:focus-visible:ring-primary/30 file:text-primary-foreground file:rounded-[calc(var(--border-radius)-2px)]',
   },
   variants: {
     variant: {
@@ -26,29 +26,29 @@ const fileInput = tv({
     },
     size: {
       sm: {
-        container: 'pr-2 py-1 text-xs h-8 pl-[1px]',
-        button: '[&::file-selector-button]:h-7 [&::file-selector-button]:px-2.5',
+        container: 'pr-2 py-1 text-xs h-8 pl-px',
+        button: 'file:h-7 file:px-2.5',
       },
       md: {
-        container: 'pr-3.5 py-2 text-sm h-10 pl-[1px]',
-        button: '[&::file-selector-button]:h-9 [&::file-selector-button]:px-3.5',
+        container: 'pr-3.5 py-2 text-sm h-10 pl-px',
+        button: 'file:h-9 file:px-3.5',
       },
       lg: {
-        container: 'pr-4 py-2 text-base h-12 pl-[1px]',
-        button: '[&::file-selector-button]:h-11 [&::file-selector-button]:px-4',
+        container: 'pr-4 py-2 text-base h-12 pl-px',
+        button: 'file:h-11 file:px-4',
       },
     },
     disabled: {
       true: {
-        container: '!bg-muted/70 backdrop-blur cursor-not-allowed !border-muted !text-muted-foreground',
+        container: 'bg-muted/70! backdrop-blur cursor-not-allowed border-muted! text-muted-foreground!',
         input: 'cursor-not-allowed placeholder:text-muted-foreground',
         button:
-          '[&::file-selector-button]:bg-muted-foreground [&::file-selector-button]:text-foreground [&::file-selector-button]:dark:text-muted',
+          'file:bg-muted-foreground file:text-foreground file:dark:text-muted',
       },
     },
     error: {
       true: {
-        container: '!border-red hover:!border-red focus:!border-red !ring-red',
+        container: 'border-red! hover:border-red! focus:border-red! ring-red!',
       },
     },
     clearable: {
@@ -115,7 +115,7 @@ export function FileInput({
       container,
       input: inputStyle,
       button,
-    } = fileInput({ variant, size, disabled, error: Boolean(error), clearable });
+    } = fileInput({ variant, size: size as 'sm' | 'md' | 'lg', disabled: (disabled ?? false) as any, error: Boolean(error) as any, clearable: (clearable ?? false) as any });
 
     return (
       <div
@@ -131,7 +131,7 @@ export function FileInput({
               className={cn(
                 'rizzui-file-input-label',
                 'block',
-                labelStyles.size[size],
+                labelStyles.size[size as 'sm' | 'md' | 'lg'],
                 labelStyles.weight[labelWeight],
                 disabled && 'text-muted-foreground',
                 labelClassName
@@ -156,14 +156,14 @@ export function FileInput({
             />
 
             {clearable && (
-              <FieldClearButton size={size} onClick={handleOnClear} />
+              <FieldClearButton size={size as 'sm' | 'md' | 'lg'} onClick={handleOnClear} />
             )}
           </span>
         </label>
 
         {!error && helperText ? (
           <FieldHelperText
-            size={size}
+            size={size as 'sm' | 'md' | 'lg'}
             className={cn(
               'rizzui-file-input-helper-text',
               disabled && 'text-muted-foreground',
@@ -176,7 +176,7 @@ export function FileInput({
 
         {error ? (
           <FieldErrorText
-            size={size}
+            size={size as 'sm' | 'md' | 'lg'}
             error={error}
             className={cn(
               'rizzui-file-input-error-text',

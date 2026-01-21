@@ -1,8 +1,8 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../../lib/variants';
 import { fontWeightStyles } from '../../../lib/font-weight';
 
-const text = tv({
+const text = createVariant({
   base: 'rizzui-text text-text-secondary',
   variants: {
     as: {

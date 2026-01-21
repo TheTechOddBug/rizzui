@@ -14,17 +14,6 @@
 <br />
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/rizzui">
-    <img alt="npm" src="https://img.shields.io/npm/dm/rizzui?color=16a679&label=npm&logo=npm" />
-  </a>
-  <a href="https://www.rizzui.com/docs/guide/getting-started">
-    <img alt="Read the documentation" src="https://img.shields.io/badge/Docs-blue?style=flat&logo=readthedocs&labelColor=5c5c5c&color=16a679" height="20" width="auto" />
-  </a>
-</div>
-
-<br />
-
-<div align="center">
   <a href="https://www.rizzui.com/docs/guide/getting-started">Documentation</a> &bull;
   <a href="https://www.rizzui.com">Website</a> &bull;
   <a href="https://github.com/rizzui/rizzui">GitHub</a>
@@ -62,17 +51,21 @@ Install RizzUI and its peer dependencies:
 
 ```bash
 # Using pnpm (recommended)
-pnpm add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss tailwind-variants tailwind-merge
+pnpm add rizzui @headlessui/react @floating-ui/react
 
 # Using npm
-npm install rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss tailwind-variants tailwind-merge
+npm install rizzui @headlessui/react @floating-ui/react
 
 # Using yarn
-yarn add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss tailwind-variants tailwind-merge
+yarn add rizzui @headlessui/react @floating-ui/react
 
 # Using bun
-bun add rizzui @headlessui/react @floating-ui/react @tailwindcss/postcss tailwind-variants tailwind-merge
+bun add rizzui @headlessui/react @floating-ui/react
 ```
+
+### Install Tailwind CSS
+
+Before configuring RizzUI, you need to install Tailwind CSS v4. Follow the [official Tailwind CSS installation guide](https://tailwindcss.com/docs/installation/using-vite) for your build tool.
 
 ### Configure Tailwind CSS v4
 

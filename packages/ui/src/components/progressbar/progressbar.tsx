@@ -1,9 +1,9 @@
 import type { HTMLAttributes } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { Text } from '../typography';
 
-const progressTrack = tv({
+const progressTrack = createVariant({
   base: 'relative w-full bg-muted rounded-full overflow-hidden',
   variants: {
     size: {
@@ -17,7 +17,7 @@ const progressTrack = tv({
   },
 });
 
-const progressBar = tv({
+const progressBar = createVariant({
   base: 'absolute top-0 bottom-0 left-0 h-full flex items-center justify-center rounded-full',
   variants: {
     color: {
@@ -34,7 +34,7 @@ const progressBar = tv({
   },
 });
 
-const progressLabel = tv({
+const progressLabel = createVariant({
   base: 'font-bold',
   variants: {
     size: {

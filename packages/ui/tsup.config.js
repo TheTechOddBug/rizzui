@@ -52,6 +52,7 @@ export default defineConfig({
     'field-helper-text': 'src/components/field-helper-text.tsx',
     highlight: 'src/components/highlight.tsx',
     cn: 'src/lib/cn.ts',
+    variants: 'src/lib/variants/index.ts',
     useCollapse: 'src/lib/use-collapse.ts',
   },
   format: ['esm', 'cjs'],

@@ -1,9 +1,10 @@
 import type { InputHTMLAttributes, ReactNode, Ref } from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
+import { useRadioGroup } from '../radio-group/radio-group';
 
-const advancedRadio = tv({
-  base: 'border-[length:var(--border-width)] border-border hover:border-primary ring-[0.6px] ring-border cursor-pointer transition duration-200 ease-in-out block peer-checked:border-primary peer-checked:ring-primary peer-checked:ring-[0.8px] peer-disabled:bg-muted/70 peer-disabled:backdrop-blur peer-disabled:text-muted-foreground peer-disabled:border-muted peer-disabled:hover:border-muted peer-disabled:ring-muted peer-disabled:cursor-not-allowed rounded-[var(--border-radius)]',
+const advancedRadio = createVariant({
+  base: 'border-(length:--border-width) border-border hover:border-primary ring-[0.6px] ring-border cursor-pointer transition duration-200 ease-in-out block peer-checked:border-primary peer-checked:ring-primary peer-checked:ring-[0.8px] peer-disabled:bg-muted/70 peer-disabled:backdrop-blur peer-disabled:text-muted-foreground peer-disabled:border-muted peer-disabled:hover:border-muted peer-disabled:ring-muted peer-disabled:cursor-not-allowed rounded-(--border-radius)',
   variants: {
     size: {
       sm: 'px-2 py-1 min-h-[32px] min-w-[70px]',
@@ -48,8 +49,26 @@ export function AdvancedRadio({
   contentClassName,
   className,
   ref,
+  value,
+  checked,
+  onChange,
   ...props
 }: AdvancedRadioProps) {
+  // Try to get radio group context (optional)
+  let groupContext;
+  try {
+    groupContext = useRadioGroup();
+  } catch {
+    // Not in a radio group, use standalone mode
+    groupContext = null;
+  }
+
+  // Use group context if available, otherwise use individual props
+  const isChecked = groupContext
+    ? groupContext.isChecked(value as string)
+    : checked;
+  const handleChange = groupContext ? groupContext.onChange : onChange;
+
   return (
     <label
       className={cn(
@@ -61,6 +80,9 @@ export function AdvancedRadio({
       <input
         type="radio"
         ref={ref}
+        value={value}
+        checked={isChecked}
+        onChange={handleChange}
         className={cn(
           'rizzui-advanced-radio-input',
           'peer absolute -z-1 opacity-0',

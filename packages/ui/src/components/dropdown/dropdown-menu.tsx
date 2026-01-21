@@ -39,7 +39,7 @@ export function DropdownMenu({
           'rizzui-dropdown-menu',
           'w-48',
           dropdownStyles.base,
-          anchorWidth && 'w-[--button-width]',
+          anchorWidth && 'w-(--button-width)',
           dropdownStyles.shadow,
           !inPortal && 'absolute start-0 z-10 mt-1.5',
           className

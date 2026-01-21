@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@source "../../node_modules/rizzui/src";
+@source "../../node_modules/rizzui/dist";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 

@@ -1,16 +1,16 @@
 import React from 'react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { FieldErrorText } from '../field-error-text';
 import { FieldHelperText } from '../field-helper-text';
 
-const switchTV = tv({
+const switchTV = createVariant({
   slots: {
     container:
-      'flex items-center cursor-pointer transition duration-200 ease-in-out peer-focus/switch:ring-[1.5px] peer-focus/switch:ring-offset-2 peer-focus/switch:ring-border ring-transparent ring-offset-background peer-checked/switch:bg-primary peer-checked/switch:border-primary rounded-full border-[length:var(--border-width)]',
+      'flex items-center cursor-pointer transition duration-200 ease-in-out peer-focus/switch:ring-[1.5px] peer-focus/switch:ring-offset-2 peer-focus/switch:ring-border ring-transparent ring-offset-background peer-checked/switch:bg-primary peer-checked/switch:border-primary rounded-full border-(length:--border-width)',
     knob: 'rizzui-switch-knob relative flex justify-center items-center transform ring-0 transition duration-200 ease-in-out translate-x-[2.5px] rtl:-translate-x-[2.5px] bg-primary rounded-full',
     input:
-      'peer/switch absolute -z-[1] opacity-0 [&:checked:enabled~span_.rizzui-switch-off-icon]:hidden [&:checked:enabled~span_.rizzui-switch-on-icon]:opacity-100 [&:checked:enabled~span>.rizzui-switch-knob]:bg-white [&:checked:enabled~span>.rizzui-switch-knob]:text-black [&:checked:enabled~span>.rizzui-switch-knob]:dark:bg-black [&:checked:enabled~span>.rizzui-switch-knob]:dark:text-white',
+      'peer/switch absolute -z-1 opacity-0 [&:checked:enabled~span_.rizzui-switch-off-icon]:hidden [&:checked:enabled~span_.rizzui-switch-on-icon]:opacity-100 [&:checked:enabled~span>.rizzui-switch-knob]:bg-white [&:checked:enabled~span>.rizzui-switch-knob]:text-black [&:checked:enabled~span>.rizzui-switch-knob]:dark:bg-black [&:checked:enabled~span>.rizzui-switch-knob]:dark:text-white',
     icon: '',
     label: 'rizzui-switch-label',
   },
@@ -88,7 +88,7 @@ const switchTV = tv({
       variant: 'outline',
       disabled: true,
       class:
-        '[&:hover_.rizzui-switch-knob]:!bg-muted [&:hover_.rizzui-switch-knob]:!text-muted-foreground',
+        '[&:hover_.rizzui-switch-knob]:bg-muted! [&:hover_.rizzui-switch-knob]:text-muted-foreground!',
     },
     // Label margins
     { labelPlacement: 'left', size: 'sm', class: { label: 'me-1.5' } },
@@ -155,7 +155,7 @@ export function Switch({
     input: inputClass,
     icon,
     label: labelClass,
-  } = switchTV({ variant, size, labelPlacement, labelWeight, disabled });
+  } = switchTV({ variant, size: size as 'sm' | 'md' | 'lg', labelPlacement, labelWeight, disabled: (disabled ?? false) as any });
 
   return (
     <div className={cn('rizzui-switch', className)}>
@@ -231,7 +231,7 @@ export function Switch({
 
       {!error && helperText ? (
         <FieldHelperText
-          size={size}
+          size={size as 'sm' | 'md' | 'lg'}
           className={cn(
             'rizzui-switch-helper-text',
             disabled && 'text-muted-foreground',
@@ -244,7 +244,7 @@ export function Switch({
 
       {error ? (
         <FieldErrorText
-          size={size}
+          size={size as 'sm' | 'md' | 'lg'}
           error={error}
           className={cn('rizzui-switch-error-text', errorClassName)}
         />

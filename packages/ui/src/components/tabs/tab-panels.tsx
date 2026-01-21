@@ -2,21 +2,21 @@ import {
   TabPanels as HeadlessTabPanels,
   type TabPanelsProps as HeadlessTabPanelsProps,
 } from '@headlessui/react';
-import { tv } from 'tailwind-variants';
+import { createVariant } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import type { ExtractProps } from '../../lib/extract-props';
 import { useTab } from './tab-context';
 
-const tabPanels = tv({
+const tabPanels = createVariant({
   base: 'py-2',
   variants: {
-    vertical: {
-      true: '',
-      false: 'mt-2',
+    orientation: {
+      vertical: '',
+      horizontal: 'mt-2',
     },
   },
   defaultVariants: {
-    vertical: false,
+    orientation: 'horizontal',
   },
 });
 
@@ -27,7 +27,11 @@ export function TabPanels({ children, className, ...props }: TabPanelsProps) {
 
   return (
     <HeadlessTabPanels
-      className={cn('rizzui-tab-panels', tabPanels({ vertical }), className)}
+      className={cn(
+        'rizzui-tab-panels',
+        tabPanels({ orientation: vertical ? 'vertical' : 'horizontal' }),
+        className
+      )}
       {...props}
     >
       {children}

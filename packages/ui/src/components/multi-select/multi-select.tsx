@@ -13,7 +13,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { createVariant, type VariantProps } from '../../lib/variants';
 import { cn } from '../../lib/cn';
 import { XIcon } from '../../icons/x-mark';
 import { SearchIcon } from '../../icons/search';
@@ -32,8 +32,8 @@ import { FieldClearButton } from '../field-clear-button';
 import { CheckmarkIcon } from '../../icons/checkmark';
 import { optionListStyles, searchStyles } from '../select/select-shared.styles';
 
-const multiSelect = tv({
-  base: 'flex group items-center peer border-[length:var(--border-width)] hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-[var(--border-radius)]',
+const multiSelect = createVariant({
+  base: 'flex group items-center peer border-(length:--border-width) hover:border-primary w-full transition duration-200 hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary rounded-(--border-radius)',
   variants: {
     variant: {
       text: 'border-transparent ring-transparent bg-transparent',
@@ -45,10 +45,10 @@ const multiSelect = tv({
       lg: 'px-4 py-2 text-base min-h-12',
     },
     disabled: {
-      true: '!bg-muted/70 backdrop-blur cursor-not-allowed !border-muted text-muted-foreground placeholder:text-muted-foreground !ring-muted',
+      true: 'bg-muted/70! backdrop-blur cursor-not-allowed border-muted! text-muted-foreground placeholder:text-muted-foreground ring-muted!',
     },
     error: {
-      true: '!border-red hover:!border-red focus:!border-red !ring-red',
+      true: 'border-red! hover:border-red! focus:border-red! ring-red!',
     },
     hasPrefix: {
       true: '',
@@ -68,7 +68,7 @@ const multiSelect = tv({
 });
 
 const checkboxStyles = {
-  base: 'peer checked:bg-none focus:ring-offset-background transition duration-200 ease-in-out size-5 rounded bg-transparent border border-border ring-border focus:ring-border checked:!bg-primary checked:!border-primary hover:enabled:border-primary',
+  base: 'peer checked:bg-none focus:ring-offset-background transition duration-200 ease-in-out size-5 rounded bg-transparent border border-border ring-border focus:ring-border checked:bg-primary! checked:border-primary! hover:enabled:border-primary',
   icon: 'peer-checked:opacity-100 absolute opacity-0 text-primary-foreground size-4 start-0.5 top-0.5',
 };
 
